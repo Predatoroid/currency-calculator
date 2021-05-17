@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CurrencyCalculator.API</name>
+    </assembly>
+    <members>
+        <member name="M:CurrencyCalculator.API.Controllers.AuthController.#ctor(CurrencyCalculator.API.Services.IUserRepository,AutoMapper.IMapper)">
+            <summary>
+            Initializes a constructor for AuthController
+            </summary>
+            <param name="userRepository"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.AuthController.Login(CurrencyCalculator.API.Models.UserForLoginDto)">
+            <summary>
+            Authenticates the user and creates a JWT token
+            </summary>
+            <param name="userForLoginDto"></param>
+            <returns></returns>
+            <response code="200">Authenticates the user and creates a JWT token</response>
+            <response code="401">The credentials are incorrect</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrenciesController.#ctor(CurrencyCalculator.API.Services.ICurrencyCalculatorRepository,AutoMapper.IMapper,CurrencyCalculator.API.Services.IUriService)">
+            <summary>
+            Initializes a constructor for CurrenciesController
+            </summary>
+            <param name="currencyCalculatorRepository"></param>
+            <param name="mapper"></param>
+            <param name="uriService"></param>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrenciesController.GetCurrencies(CurrencyCalculator.API.Models.PaginationFilter)">
+            <summary>
+            Returns all (or paginated) the active currencies
+            </summary>
+            <param name="filter"></param>
+            <returns>All (or paginated) the active currencies</returns>
+            <response code="200">Returns all (or paginated) the active currencies</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrenciesController.GetCurrency(System.Guid)">
+            <summary>
+            Returns a single active currency
+            </summary>
+            <param name="currencyId"></param>
+            <returns>A single active currency</returns>
+            <response code="200">Returns a single active currency</response>
+            <response code="404">Unable to find the active currency</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrenciesController.CreateCurrency(CurrencyCalculator.API.Models.CurrencyForCreationDto)">
+            <summary>
+            Creates a currency
+            </summary>
+            <param name="currency"></param>
+            <returns></returns>
+            <response code="201">Creates a currency</response>
+            <response code="409">Currency already exists</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrenciesController.GetCurrenciesOptions">
+            <summary>
+            Returns the available actions in header "Allow"
+            </summary>
+            <returns></returns>
+            <response code="200">Returns the available actions in header "Allow"</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrenciesController.DeleteCurrency(System.Guid)">
+            <summary>
+            Deletes a currency
+            </summary>
+            <param name="currencyId"></param>
+            <returns></returns>
+            <response code="204">Deletes a currency</response>
+            <response code="404">Unable to find the active currency in order to delete</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrencyRatesController.#ctor(CurrencyCalculator.API.Services.ICurrencyCalculatorRepository,AutoMapper.IMapper,CurrencyCalculator.API.Services.IUriService)">
+            <summary>
+            Initializes a constructor for CurrencyRatesController
+            </summary>
+            <param name="currencyCalculatorRepository"></param>
+            <param name="mapper"></param>
+            <param name="uriService"></param>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrencyRatesController.GetCurrencyRates(CurrencyCalculator.API.Models.PaginationFilter)">
+            <summary>
+            Returns all (or paginated) the active currency rates
+            </summary>
+            <param name="filter"></param>
+            <returns>All (or paginated) the active currency rates</returns>
+            <response code="200">Returns all (or paginated) the active currency rates</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrencyRatesController.GetCurrencyRate(System.Guid)">
+            <summary>
+            Returns a single active currency rate
+            </summary>
+            <param name="currencyRateId"></param>
+            <returns>A single active currency rate</returns>
+            <response code="200">Returns a single active currency rate</response>
+            <response code="404">Unable to find the active currency rate</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrencyRatesController.GetCurrencyRate(System.String,System.String)">
+            <summary>
+            Returns a single active currency rate by base and target currency codes
+            </summary>
+            <param name="baseCurrencyCode"></param>
+            <param name="targetCurrencyCode"></param>
+            <returns>A single active currency rate by base and target currency codes</returns>
+            <response code="200">Returns a single active currency rate by base and target currency codes</response>
+            <response code="404">Unable to find the active currency rate by base and target currency codes</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrencyRatesController.Calculate(System.String,System.String,System.Decimal)">
+            <summary>
+            Calculates the result of CurrencyRate.Value * amount
+            </summary>
+            <param name="baseCurrencyCode"></param>
+            <param name="targetCurrencyCode"></param>
+            <param name="amount"></param>
+            <returns>The result of CurrencyRate.Value * amount</returns>
+            <response code="200">Returns the result of CurrencyRate.Value * amount</response>
+            <response code="404">Unable to find the active currency rate in order to calculate</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrencyRatesController.CreateCurrencyRate(CurrencyCalculator.API.Models.CurrencyRateForCreationDto)">
+            <summary>
+            Creates a currency rate
+            </summary>
+            <param name="currencyRate"></param>
+            <returns></returns>
+            <response code="201">Creates a currency rate</response>
+            <response code="409">Currency rate already exists</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrencyRatesController.GetCurrencyRatesOptions">
+            <summary>
+            Returns the available actions in header "Allow"
+            </summary>
+            <returns></returns>
+            <response code="200">Returns the available actions in header "Allow"</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.CurrencyRatesController.DeleteCurrencyRate(System.Guid)">
+            <summary>
+            Deletes a currency rate
+            </summary>
+            <param name="currencyRateId"></param>
+            <returns></returns>
+            <response code="204">Deletes a currency rate</response>
+            <response code="404">Unable to find the active currency rate in order to delete</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.UsersController.#ctor(CurrencyCalculator.API.Services.IUserRepository,AutoMapper.IMapper,CurrencyCalculator.API.Services.IUriService)">
+            <summary>
+            Initializes a constructor for UsersController
+            </summary>
+            <param name="userRepository"></param>
+            <param name="mapper"></param>
+            <param name="uriService"></param>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.UsersController.GetUsers(CurrencyCalculator.API.Models.PaginationFilter)">
+            <summary>
+            Returns all (or paginated) the active users
+            </summary>
+            <param name="filter"></param>
+            <returns>All (or paginated) the active users</returns>
+            <response code="200">Returns all (or paginated) the active users</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.UsersController.GetUser(System.Guid)">
+            <summary>
+            Returns a single active user
+            </summary>
+            <param name="userId"></param>
+            <returns>A single active user</returns>
+            <response code="200">Returns a single active user</response>
+            <response code="404">Unable to find the active user</response>
+        </member>
+        <member name="M:CurrencyCalculator.API.Controllers.UsersController.CreateUser(CurrencyCalculator.API.Models.UserForCreationDto)">
+            <summary>
+            Creates a user
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+            <response code="201">Creates a user</response>
+            <response code="409">User already exists</response>
+        </member>
+    </members>
+</doc>

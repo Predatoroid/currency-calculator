@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "c8635f80-d29e-4f26-a6ba-ca532ee53de2",
+		"name": "CurrencyCalculator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET currencies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/currencies",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET currencies (filter)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/currencies?pageNumber=1&pageSize=2",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencies"
+					],
+					"query": [
+						{
+							"key": "pageNumber",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET currency",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/currencies/d28888e9-2ba9-473a-a40f-e38cb54f9b35",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencies",
+						"d28888e9-2ba9-473a-a40f-e38cb54f9b35"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST currency",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Code\": \"SAR\",\r\n    \"Description\": \"Saudi riyal\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiUrl}}/api/currencies",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE currency",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/currencies/65b2f6b3-b153-40e1-329a-08d9187c33e7",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencies",
+						"65b2f6b3-b153-40e1-329a-08d9187c33e7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OPTIONS currencies",
+			"request": {
+				"method": "OPTIONS",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/currencies",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET currencyrates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/currencyrates/",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencyrates",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET currencyrates (filter)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/currencyrates?pageNumber=1&pageSize=2",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencyrates"
+					],
+					"query": [
+						{
+							"key": "pageNumber",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET currencyrate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/currencyrates/2ee49fe3-edf2-4f91-8409-3eb25ce6ca51",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencyrates",
+						"2ee49fe3-edf2-4f91-8409-3eb25ce6ca51"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET currencyrate (codes)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/currencyrates/EUR/USD",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencyrates",
+						"EUR",
+						"USD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST currencyrate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"BaseCurrencyCode\": \"SAR\",\r\n    \"TargetCurrencyCode\": \"USD\",\r\n    \"Value\": 0.27\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiUrl}}/api/currencyrates",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencyrates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE currencyrate",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/currencyrates/2ee49fe3-edf2-4f91-8409-3eb25ce6cb51",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencyrates",
+						"2ee49fe3-edf2-4f91-8409-3eb25ce6cb51"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OPTIONS currencyrates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/currencyrates",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencyrates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET currencyrate (calculate)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/currencyrates/EUR/USD/10",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"currencyrates",
+						"EUR",
+						"USD",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiUrl}}/api/users",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"token\", res.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Username\": \"admin\",\r\n    \"Password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiUrl}}/api/auth/login",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
