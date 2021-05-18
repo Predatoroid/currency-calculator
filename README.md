@@ -39,7 +39,7 @@ This is a demo CRUD application providing a REST API for currencies, currency ra
 ## Usage
 ### Swagger
 
-1. Navigate to [Swagger UI](https://localhost:51044/swagger) to see the available endpoints that are described in documentation
+1. Navigate to [Swagger UI](http://localhost:51044/swagger) to see the available endpoints that are described in documentation
 
 2. Send a POST request in `api/auth/login` with the below body (**NOTE**: The Media type has to be **application/json**):
 	###### Admin → Access in all actions (currencies, currency rates, users)
