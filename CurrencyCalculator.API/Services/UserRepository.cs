@@ -84,6 +84,7 @@ namespace CurrencyCalculator.API.Services
                 .Skip((filter.PageNumber - 1) * filter.PageSize)
                 .Take(filter.PageSize)
                 .Where(x => x.IsActive)
+                .OrderBy(x => x.Username)
                 .ToList();
         }
 
