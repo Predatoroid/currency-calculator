@@ -4,7 +4,7 @@ This is a demo CRUD application providing a REST API for currencies, currency ra
 
 ## Built With
 
-* [.NET Core](https://github.com/dotnet/core)
+* [.NET Core 3.1](https://dotnet.microsoft.com/download)
 * [Entity Framework](https://docs.microsoft.com/en-us/ef/)
 * [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-2019)
 
@@ -31,7 +31,7 @@ This is a demo CRUD application providing a REST API for currencies, currency ra
 	dotnet ef database update
 	```
 
-3. Navigate to `CurrencyCalculator.API`  in order to run the API:
+3. Navigate to `CurrencyCalculator.API`  in order to run the API (make sure that you have installed .NET Core 3.1 Runtime & SDK):
 	```bash
 	dotnet run
 	```
