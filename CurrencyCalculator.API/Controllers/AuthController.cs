@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
 using CurrencyCalculator.API.Models;
@@ -41,6 +42,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <response code="401">The credentials are incorrect</response>
         [AllowAnonymous]
         [HttpPost("login")]
+        [Produces(MediaTypeNames.Application.Json)]
         public ActionResult<UserDto> Login([FromBody] UserForLoginDto userForLoginDto)
         {
             var userDto = _userRepository.Login(userForLoginDto);

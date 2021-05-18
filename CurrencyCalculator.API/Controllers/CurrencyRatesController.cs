@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
 using CurrencyCalculator.API.Entities;
@@ -47,6 +48,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <response code="200">Returns all (or paginated) the active currency rates</response>
         [HttpGet()]
         [HttpHead]
+        [Produces(MediaTypeNames.Application.Json)]
         public ActionResult<PagedResponse<IEnumerable<CurrencyRateDto>>> GetCurrencyRates([FromQuery] PaginationFilter filter)
         {
             var route = Request.Path.Value;
@@ -70,6 +72,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <response code="200">Returns a single active currency rate</response>
         /// <response code="404">Unable to find the active currency rate</response>
         [HttpGet("{currencyRateId}", Name = "GetCurrencyRate")]
+        [Produces(MediaTypeNames.Application.Json)]
         public ActionResult<CurrencyRateDto> GetCurrencyRate(Guid currencyRateId)
         {
             var currencyRateFromRepo = _currencyCalculatorRepository.GetCurrencyRate(currencyRateId);
@@ -89,6 +92,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <response code="200">Returns a single active currency rate by base and target currency codes</response>
         /// <response code="404">Unable to find the active currency rate by base and target currency codes</response>
         [HttpGet("{baseCurrencyCode}/{targetCurrencyCode}")]
+        [Produces(MediaTypeNames.Application.Json)]
         public ActionResult<CurrencyRateDto> GetCurrencyRate(string baseCurrencyCode, string targetCurrencyCode)
         {
             var currencyRateFromRepo = _currencyCalculatorRepository.GetCurrencyRate(baseCurrencyCode, targetCurrencyCode);
@@ -109,6 +113,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <response code="200">Returns the result of CurrencyRate.Value * amount</response>
         /// <response code="404">Unable to find the active currency rate in order to calculate</response>
         [HttpGet("{baseCurrencyCode}/{targetCurrencyCode}/{amount}")]
+        [Produces(MediaTypeNames.Application.Json)]
         public ActionResult<decimal?> Calculate(string baseCurrencyCode, string targetCurrencyCode, decimal amount)
         {
             var convertedValue = _currencyCalculatorRepository.Calculate(baseCurrencyCode, targetCurrencyCode, amount);
@@ -128,6 +133,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <response code="409">Currency rate already exists</response>
         [Authorize(Roles = "admin")]
         [HttpPost]
+        [Produces(MediaTypeNames.Application.Json)]
         public ActionResult<CurrencyRateDto> CreateCurrencyRate(CurrencyRateForCreationDto currencyRate)
         {
             if (currencyRate == null)
@@ -163,6 +169,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <returns></returns>
         /// <response code="200">Returns the available actions in header "Allow"</response>
         [HttpOptions]
+        [Produces(MediaTypeNames.Application.Json)]
         public IActionResult GetCurrencyRatesOptions()
         {
             Response.Headers.Add("Allow", "GET,OPTIONS,POST,DELETE");
@@ -178,6 +185,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <response code="404">Unable to find the active currency rate in order to delete</response>
         [Authorize(Roles = "admin")]
         [HttpDelete("{currencyRateId}")]
+        [Produces(MediaTypeNames.Application.Json)]
         public ActionResult DeleteCurrencyRate(Guid currencyRateId)
         {
             var currencyRateFromRepo = _currencyCalculatorRepository.GetCurrencyRate(currencyRateId);

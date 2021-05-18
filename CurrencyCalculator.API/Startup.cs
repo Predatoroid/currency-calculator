@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using CurrencyCalculator.API.DbContexts;
+using CurrencyCalculator.API.Helpers;
 using CurrencyCalculator.API.Models;
 using CurrencyCalculator.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -38,6 +39,10 @@ namespace CurrencyCalculator.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+            var appSettings = appSettingsSection.Get<AppSettings>();
+
             services.AddControllers(setupAction => {
                 setupAction.ReturnHttpNotAcceptable = true;
             })
@@ -125,7 +130,7 @@ namespace CurrencyCalculator.API
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetValue<string>("AppSettings:JWTKey"))),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(appSettings.SecretKey)),
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };

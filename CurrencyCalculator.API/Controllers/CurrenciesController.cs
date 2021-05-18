@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
 using CurrencyCalculator.API.DbContexts;
@@ -48,6 +49,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <response code="200">Returns all (or paginated) the active currencies</response>
         [HttpGet()]
         [HttpHead]
+        [Produces(MediaTypeNames.Application.Json)]
         public ActionResult<PagedResponse<IEnumerable<CurrencyDto>>> GetCurrencies([FromQuery] PaginationFilter filter)
         {
             var route = Request.Path.Value;
@@ -70,6 +72,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <response code="200">Returns a single active currency</response>
         /// <response code="404">Unable to find the active currency</response>
         [HttpGet("{currencyId}", Name = "GetCurrency")]
+        [Produces(MediaTypeNames.Application.Json)]
         public ActionResult<CurrencyDto> GetCurrency(Guid currencyId)
         {
             var currencyFromRepo = _currencyCalculatorRepository.GetCurrency(currencyId);
@@ -89,6 +92,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <response code="409">Currency already exists</response>
         [Authorize(Roles = "admin")]
         [HttpPost]
+        [Produces(MediaTypeNames.Application.Json)]
         public ActionResult<CurrencyDto> CreateCurrency(CurrencyForCreationDto currency)
         {
             var currencyEntity = _mapper.Map<Currency>(currency);
@@ -110,6 +114,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <returns></returns>
         /// <response code="200">Returns the available actions in header "Allow"</response>
         [HttpOptions]
+        [Produces(MediaTypeNames.Application.Json)]
         public IActionResult GetCurrenciesOptions()
         {
             Response.Headers.Add("Allow", "GET,OPTIONS,POST,DELETE");
@@ -125,6 +130,7 @@ namespace CurrencyCalculator.API.Controllers
         /// <response code="404">Unable to find the active currency in order to delete</response>
         [Authorize(Roles = "admin")]
         [HttpDelete("{currencyId}")]
+        [Produces(MediaTypeNames.Application.Json)]
         public ActionResult DeleteCurrency(Guid currencyId)
         {
             var currencyFromRepo = _currencyCalculatorRepository.GetCurrency(currencyId);

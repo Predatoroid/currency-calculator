@@ -8,6 +8,7 @@ using CurrencyCalculator.API.Entities;
 using CurrencyCalculator.API.Helpers;
 using CurrencyCalculator.API.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace CurrencyCalculator.API.Services
 {
@@ -15,13 +16,18 @@ namespace CurrencyCalculator.API.Services
     {
         private readonly CurrencyCalculatorContext _context;
         private readonly IMapper _mapper;
-        private readonly double hoursForTokenToExpire = 8;
+        private readonly double _hoursForTokenToExpire = 1;
+        private readonly string _secretKey;
 
-
-        public UserRepository(CurrencyCalculatorContext context, IMapper mapper)
+        public UserRepository(CurrencyCalculatorContext context
+            , IMapper mapper
+            , IOptions<AppSettings> options)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+
+            AppSettings appSettings = options.Value;
+            _secretKey = appSettings.SecretKey;
         }
 
         public User AddUser(User user)
@@ -138,9 +144,7 @@ namespace CurrencyCalculator.API.Services
 
             User user = GetUserByUsername(userForLoginDto.Username);
             
-            //TODO: Get JWTKey from appsettings
-            string key = "CurrencyCalculator";
-            if (user == null || userForLoginDto.Password != CipherHelper.Decrypt(user.Password, key))
+            if (user == null || userForLoginDto.Password != CipherHelper.Decrypt(user.Password, _secretKey))
                 return null;
 
             return new UserDto
@@ -151,8 +155,8 @@ namespace CurrencyCalculator.API.Services
                 Token = JWTHelper.GenerateToken(
                     user.Id,
                     user.UserRoles.Select(ur => ur.Role.Description),
-                    key,
-                    hoursForTokenToExpire
+                    _secretKey,
+                    _hoursForTokenToExpire
                     ),
                 UserRoles = user.UserRoles.Select(ur => ur.Role.Description).ToList(),
                 IsActive = true
